@@ -6,7 +6,7 @@ import matplotlib.image as mpimg
 import networkx as nx
 from networkx.algorithms.simple_paths import all_simple_paths
 
-from rwtools.nemesis.graph.nemesis_node import NemesisNode
+from graph.nemesis_node import NemesisNode
 
 random.seed(10)
 

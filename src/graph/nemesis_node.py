@@ -1,4 +1,5 @@
-from rwtools.nemesis.graph.abstract_nemesis_node import AbstractNemesisNode
+from graph.abstract_nemesis_node import AbstractNemesisNode
+
 
 class NemesisNode(AbstractNemesisNode):
     """

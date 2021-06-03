@@ -6,12 +6,16 @@ import networkx as nx
 from networkx.algorithms.cycles import simple_cycles
 from networkx.algorithms.simple_paths import all_simple_paths, all_simple_edge_paths
 
-from librw.container import InstructionWrapper
-from rwtools.nemesis.graph.abstract_nemesis_node import AbstractNemesisNode
-from rwtools.nemesis.graph.nemesis_node import NemesisNode
-
-from rwtools.nemesis.graph.utils import single_source_longest_dag_path_length, get_node_depth, \
-    to_img
+# from librw.container import InstructionWrapper
+# from rwtools.nemesis.graph.abstract_nemesis_node import AbstractNemesisNode
+# from rwtools.nemesis.graph.nemesis_node import NemesisNode
+#
+# from rwtools.nemesis.graph.utils import single_source_longest_dag_path_length, get_node_depth, \
+#     to_img
+from graph.abstract_nemesis_node import AbstractNemesisNode
+from graph.nemesis_node import NemesisNode
+from graph.utils import single_source_longest_dag_path_length, get_node_depth, to_img
+from retrowrite.librw.container import InstructionWrapper
 
 random.seed(10)
 
@@ -21,6 +25,7 @@ random_numbers = random.sample(range(1, 1000), 100)  # sampling without replacem
 def find_branch_target(branch_instruction):
     start = branch_instruction.find(".")
     return branch_instruction[start:]
+
 
 def set_branch_target(instruction_sequence, label):
     # TODO: use NemesisNode.setBranchingtarget()
@@ -39,10 +44,12 @@ def set_branch_target(instruction_sequence, label):
 def is_branching_instruction(instruction):
     return True in [x in instruction for x in ["jmp", "je", "jne", "jge"]]
 
+
 def get_node_id():
     node_id = random_numbers[0]
     random_numbers.remove(node_id)
     return node_id
+
 
 class ControlFlowGraph:
     """
@@ -308,7 +315,7 @@ class ControlFlowGraph:
             # by construction all other descendants of to_node will have a jump (inserted when
             # from node was first inserted)
             last_instr = node.get_instr_mnemonic(-1)
-            assert(is_branching_instruction(last_instr))
+            assert (is_branching_instruction(last_instr))
             branch_target = find_branch_target(last_instr)
             # if this branch target is equal to the node i
             if isinstance(to_node, NemesisNode) and branch_target == to_node.get_start_label():

@@ -1,7 +1,6 @@
 from collections import defaultdict
 
 
-
 def flatten(nested_list):
     ret = []
     for sublist in nested_list:
