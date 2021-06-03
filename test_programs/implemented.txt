@@ -1,0 +1,20 @@
+
+Benchmark suite
+call        X
+diamond     X
+fork        X
+ifcompound  X
+indirect    X
+multifork   X
+triangle    X
+
+bsl         X
+keypad      - needs better test inputs
+kruskal     - some error in code still
+modexp2     - segfault in rewritten code, maybe related to use of idivl
+mulhi3
+mulmod8
+sharevalue  X
+switch16
+switch8
+twofish
