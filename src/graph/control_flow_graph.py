@@ -6,12 +6,6 @@ import networkx as nx
 from networkx.algorithms.cycles import simple_cycles
 from networkx.algorithms.simple_paths import all_simple_paths, all_simple_edge_paths
 
-# from librw.container import InstructionWrapper
-# from rwtools.nemesis.graph.abstract_nemesis_node import AbstractNemesisNode
-# from rwtools.nemesis.graph.nemesis_node import NemesisNode
-#
-# from rwtools.nemesis.graph.utils import single_source_longest_dag_path_length, get_node_depth, \
-#     to_img
 from graph.abstract_nemesis_node import AbstractNemesisNode
 from graph.nemesis_node import NemesisNode
 from graph.utils import single_source_longest_dag_path_length, get_node_depth, to_img
@@ -250,7 +244,6 @@ class ControlFlowGraph:
                 to_node = new_node
 
     def equalize_branches(self, target_node):
-        # root = get_root(self.graph)
         subgraph = self.subgraph(target_node)
 
         longest_path_lengths = single_source_longest_dag_path_length(subgraph, target_node)
@@ -259,7 +252,6 @@ class ControlFlowGraph:
         for leaf in leaves:
             if diff := leaf_depth - longest_path_lengths[leaf]:
                 # true if diff is not equal to 0
-                # name_prefix = f"leaf_{leaf.id}"
                 current_node = leaf
                 for i in range(diff):
                     # TODO: use function insert_as_parent()
@@ -466,7 +458,6 @@ class ControlFlowGraph:
                             subgraph_nodes.append(n)
             return self.graph.subgraph(subgraph_nodes)
         else:
-            # TODO: find better way of doing this?
             subgraph_nodes = []
             paths = all_simple_paths(self.graph, source=node, target=dominator)
             for p in paths:

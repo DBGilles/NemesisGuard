@@ -21,6 +21,7 @@ def to_img(graph, out_dir="image", name="temp"):
     img = mpimg.imread(f"{name}.png")
     return img
 
+
 def sort_edge(e1, e2):
     from1, to1 = e1
     from2, to2 = e2
@@ -70,7 +71,6 @@ def create_graph_structure(rwcontainer, func_name):
     for instr in target_fn.cache:
         # instr is an instance of class librw.container.InstructionWrapper
         nodes.append(NemesisNode(instr))
-        # nodes[fn.name].append(NemesisNode(instr))
     graph.add_nodes_from(nodes)
 
     # add branching information to the sequences

@@ -12,7 +12,6 @@ modifier_to_size = {'q': 64, 'l': 32, 'w': 16, 'b': 8}
 def _strip_operand(operand):
     # strip any non alphannumeric characters that may occur at start of operand and trailing
     # characters
-    # TODO: should be able to use regex here
     if operand[:2] == ", ":
         operand = operand[2:]
     elif operand[0] == ",":
@@ -61,7 +60,6 @@ def split_operands(op_string):
         # second_ops = split_operands_v2(second_op)
         return [first_op, second_op]
     elif three_ops_regex.fullmatch(op_string):
-        # TODO: in the case of a compound op this will fail (we don't want to split on the
         # commas within this compound op e.g. op1, (op2_a, op2_b, op2_c), op3
         ops = [op.strip() for op in op_string.split(",")]
         return ops
@@ -73,9 +71,6 @@ def split_operands(op_string):
 def map_assembly_values(asm_value):
     if isinstance(asm_value, list):
         raise ValueError("obsolete, should never occur anymore")
-        # substring = ", ".join(asm_value)
-        # asm_value = f"({substring})"
-        # return Memory(asm_value)
 
     try:
         _ = int(asm_value)
@@ -111,9 +106,6 @@ def map_assembly_values(asm_value):
         return Memory(asm_value)
 
     raise ValueError(f"warning, unable to map unknown value {asm_value} to type")
-    # print(f"warning, unable to map unknown value {asm_value} to type")
-    # return Unknown(asm_value)
-
 
 def count_matches(instruction_asm, candidate_types, asm_operands):
     candidates_copy = list(copy.deepcopy(candidate_types))
@@ -189,7 +181,6 @@ class LatencyMapV2:
         instruction = args[0]
         # in some cases syntax is not exactly the same -- specific
         # instructions need to be mapped to more general versions
-        # TODO: use the size information stored in the mnemonic instead of simply converting to
         # general version
         if 'movs' in instruction:
             instruction = "movsx"
@@ -223,14 +214,12 @@ class LatencyMapV2:
             return latencies[0]
         # otherwise select the candidate that is the best match
         max_match = 0
-        best_ops = None
         best_lat = None
         for candidate_ops, latency in candidates:
             match_count = count_matches(instruction, candidate_ops, operands)
             if match_count > max_match:
                 max_match = match_count
                 best_lat = latency
-                best_ops = candidate_ops
         if best_lat is None:
             print("warning, no latency found for instruction")
         return best_lat

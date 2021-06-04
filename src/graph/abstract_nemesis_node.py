@@ -96,8 +96,6 @@ class AbstractNemesisNode:
                 # add isntr, lat as last instruction, latenccy in the node
                 self.insert(i, instr, lat)
                 i += 1
-                # self.instruction_wrappers[-1].instrument_after(instr)
-                # self.latencies[-1].append(lat)
 
     def append_instructions(self, instructions, latencies):
         i = self.num_instructions()
@@ -135,8 +133,6 @@ class AbstractNemesisNode:
         c = 0
         out = None
         for i in range(self.get_nr_of_instruction_sequences()):
-            # instruction_sequence = self.instructions[i]
-            # instruction_sequence_len = len(instruction_sequence)
             instr_sequence_len = self.get_instruction_sequence_length(i)
             # for j in range(len(self.instruction_wrappers[i])):
             for j in range(instr_sequence_len):

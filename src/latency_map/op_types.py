@@ -112,7 +112,6 @@ class Relative(BaseType):
         return True
 
 
-# TODO: mapping to type, construction type, taking into account size
 def map_opcode_types(type_name):
     """
     Map the type representation used by package opcodes to an instance of the correct type
