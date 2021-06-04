@@ -82,4 +82,14 @@ This assembly file can be compiled using any compiler.
 
 
 ## Evaluation 
-The algorithm has been evaluated using Jupyter notebooks to make the interaction easier. These can be found in ... 
+The algorithm has been evaluated using Jupyter notebooks to make the interaction with the results easier. 
+These notebooks can be found in the directory `evaluation_notebooks`. 
+To start using the notebooks activate the virtual environment 
+```
+source third-party/retrowrite/retro/bin/activate
+``` 
+then run the following command to add the kernel to jupyter 
+```
+python -m ipykernel install --user --name=retro
+```
+Then select the newly created kernel to run the notebooks. 
